@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 84% 5%; /* #0F172A */
+  --foreground: 210 40% 98%; /* #F8FAFC */
+  --muted: 215 28% 17%; /* #1E293B */
+  --muted-foreground: 215 20% 65%; /* #94A3B8 */
+  --popover: 215 28% 17%; /* #1E293B */
+  --popover-foreground: 210 40% 98%; /* #F8FAFC */
+  --card: 215 28% 17%; /* #1E293B */
+  --card-foreground: 210 40% 98%; /* #F8FAFC */
+  --border: 215 14% 34%; /* #475569 */
+  --input: 215 14% 34%; /* #475569 */
+  --primary: 238 75% 65%; /* #6366F1 */
+  --primary-foreground: 213 100% 99%; /* #F0F9FF */
+  --secondary: 262 83% 68%; /* #8B5CF6 */
+  --secondary-foreground: 210 40% 98%; /* #F8FAFC */
+  --accent: 215 28% 17%; /* #1E293B */
+  --accent-foreground: 210 40% 98%; /* #F8FAFC */
+  --destructive: 0 84% 60%; /* #EF4444 */
+  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+  --ring: 238 75% 65%; /* #6366F1 */
+  --radius: 0.5rem;
+  
+  /* Custom colors for gaming theme */
+  --accent-green: 142 71% 45%; /* #10B981 */
+  --accent-amber: 43 96% 56%; /* #F59E0B */
+  --accent-red: 0 84% 60%; /* #EF4444 */
+  --dark-900: 222 84% 5%; /* #0F172A */
+  --dark-800: 215 28% 17%; /* #1E293B */
+  --dark-700: 215 20% 25%; /* #334155 */
+  --dark-600: 215 14% 34%; /* #475569 */
+}
+
+.dark {
+  --background: 222 84% 5%; /* #0F172A */
+  --foreground: 210 40% 98%; /* #F8FAFC */
+  --muted: 215 28% 17%; /* #1E293B */
+  --muted-foreground: 215 20% 65%; /* #94A3B8 */
+  --popover: 215 28% 17%; /* #1E293B */
+  --popover-foreground: 210 40% 98%; /* #F8FAFC */
+  --card: 215 28% 17%; /* #1E293B */
+  --card-foreground: 210 40% 98%; /* #F8FAFC */
+  --border: 215 14% 34%; /* #475569 */
+  --input: 215 14% 34%; /* #475569 */
+  --primary: 238 75% 65%; /* #6366F1 */
+  --primary-foreground: 213 100% 99%; /* #F0F9FF */
+  --secondary: 262 83% 68%; /* #8B5CF6 */
+  --secondary-foreground: 210 40% 98%; /* #F8FAFC */
+  --accent: 215 28% 17%; /* #1E293B */
+  --accent-foreground: 210 40% 98%; /* #F8FAFC */
+  --destructive: 0 84% 60%; /* #EF4444 */
+  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+  --ring: 238 75% 65%; /* #6366F1 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glow-effect {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  
+  .glow-effect:hover {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  }
+  
+  .code-editor {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, hsl(var(--dark-800)), hsl(var(--dark-700)));
+  }
+  
+  .progress-bar-animated {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--primary)));
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+  
+  .team-card {
+    background: linear-gradient(135deg, hsl(var(--dark-800)), hsl(var(--dark-700)));
+    border: 1px solid hsl(var(--dark-600));
+  }
+  
+  .mini-game-card {
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, hsl(var(--dark-800)), hsl(var(--dark-700)));
+  }
+  
+  .mini-game-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-accent-green {
+    color: hsl(var(--accent-green));
+  }
+  
+  .text-accent-amber {
+    color: hsl(var(--accent-amber));
+  }
+  
+  .text-accent-red {
+    color: hsl(var(--accent-red));
+  }
+  
+  .bg-accent-green {
+    background-color: hsl(var(--accent-green));
+  }
+  
+  .bg-accent-amber {
+    background-color: hsl(var(--accent-amber));
+  }
+  
+  .bg-accent-red {
+    background-color: hsl(var(--accent-red));
+  }
+  
+  .bg-dark-900 {
+    background-color: hsl(var(--dark-900));
+  }
+  
+  .bg-dark-800 {
+    background-color: hsl(var(--dark-800));
+  }
+  
+  .bg-dark-700 {
+    background-color: hsl(var(--dark-700));
+  }
+  
+  .bg-dark-600 {
+    background-color: hsl(var(--dark-600));
+  }
+  
+  .border-dark-600 {
+    border-color: hsl(var(--dark-600));
+  }
+  
+  .border-dark-700 {
+    border-color: hsl(var(--dark-700));
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
