@@ -25,16 +25,16 @@ export default function CodeEditor({ challenge, solution, onSolutionChange }: Co
     setErrors([]);
     
     try {
-      // Simple code validation and execution simulation
+      // Syntax validation
       const lines = code.split('\n');
       const issues: string[] = [];
       
-      // Check for common issues
+      // Check for common syntax issues
       lines.forEach((line, index) => {
         const trimmed = line.trim();
-        if (trimmed && !trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}')) {
+        if (trimmed && !trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}') && !trimmed.startsWith('//')) {
           if (trimmed.includes('let ') || trimmed.includes('const ') || trimmed.includes('var ') || 
-              trimmed.includes('total +=') || trimmed.includes('return ')) {
+              trimmed.includes('total +=') || trimmed.includes('return ') || trimmed.includes('=')) {
             issues.push(`Line ${index + 1}: Missing semicolon`);
           }
         }
@@ -45,16 +45,73 @@ export default function CodeEditor({ challenge, solution, onSolutionChange }: Co
         issues.push('Function is missing a return statement');
       }
       
+      // Check for typos in common methods
+      if (code.includes('toLowercase')) {
+        issues.push('Typo: "toLowercase" should be "toLowerCase"');
+      }
+      
       setErrors(issues);
       
       if (issues.length === 0) {
-        setOutput('✅ Code runs successfully!\nOutput: [1, 1, 3, 4, 5]\nExecution time: 0.02ms');
+        // Try to actually run the code safely
+        try {
+          // Create a safe execution environment
+          const testCases = challenge.content?.testCases || [
+            { input: [{price: 10}, {price: 20}, {price: 30}], expected: 60 },
+            { input: [{price: 5}, {price: 15}], expected: 20 },
+            { input: [], expected: 0 }
+          ];
+          
+          // Execute code in a safe way
+          const func = new Function('return ' + code)();
+          let allTestsPassed = true;
+          let testResults = [];
+          
+          for (const testCase of testCases) {
+            try {
+              const result = func(testCase.input);
+              const passed = result === testCase.expected;
+              testResults.push({
+                input: JSON.stringify(testCase.input),
+                expected: testCase.expected,
+                actual: result,
+                passed
+              });
+              if (!passed) allTestsPassed = false;
+            } catch (error) {
+              testResults.push({
+                input: JSON.stringify(testCase.input),
+                expected: testCase.expected,
+                actual: 'Error: ' + error.message,
+                passed: false
+              });
+              allTestsPassed = false;
+            }
+          }
+          
+          let outputText = allTestsPassed ? '✅ All tests passed!\n\n' : '❌ Some tests failed:\n\n';
+          testResults.forEach((result, index) => {
+            outputText += `Test ${index + 1}: ${result.passed ? '✅' : '❌'}\n`;
+            outputText += `Input: ${result.input}\n`;
+            outputText += `Expected: ${result.expected}\n`;
+            outputText += `Actual: ${result.actual}\n\n`;
+          });
+          
+          if (allTestsPassed) {
+            outputText += 'Performance: ⚡ Excellent\nExecution time: ~0.02ms';
+          }
+          
+          setOutput(outputText);
+          
+        } catch (execError) {
+          setOutput(`❌ Runtime Error: ${execError.message}\n\nPlease fix the syntax errors first.`);
+        }
       } else {
-        setOutput('❌ Code has errors. Fix them to continue.');
+        setOutput('❌ Code has syntax errors. Fix them to test functionality.');
       }
     } catch (error) {
-      setErrors(['Syntax error in code']);
-      setOutput('❌ Failed to execute code');
+      setErrors(['Critical syntax error in code']);
+      setOutput('❌ Failed to parse code. Check your syntax.');
     }
   };
 

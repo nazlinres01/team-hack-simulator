@@ -69,46 +69,147 @@ export class MemStorage implements IStorage {
   }
 
   private initializeData() {
-    // Create sample challenges
+    // Create comprehensive sample challenges
     const sampleChallenges = [
       {
         title: "Code Debug Rally",
-        description: "Fix syntax errors fast!",
+        description: "Fix JavaScript bugs and make the function work correctly",
         type: "code",
         difficulty: "easy",
         points: 200,
-        timeLimit: 180,
+        timeLimit: 300,
         content: {
           code: `function calculateTotal(items) {\n  let total = 0\n  for (let i=0; i<items.length; i++) {\n    total += items[i].price\n  }\n}`,
           errors: ["Missing semicolons", "Missing return statement"],
-          correctCode: `function calculateTotal(items) {\n  let total = 0;\n  for (let i=0; i<items.length; i++) {\n    total += items[i].price;\n  }\n  return total;\n}`
+          correctCode: `function calculateTotal(items) {\n  let total = 0;\n  for (let i=0; i<items.length; i++) {\n    total += items[i].price;\n  }\n  return total;\n}`,
+          testCases: [
+            { input: [{price: 10}, {price: 20}, {price: 30}], expected: 60 },
+            { input: [{price: 5}, {price: 15}], expected: 20 },
+            { input: [], expected: 0 }
+          ]
         }
       },
       {
-        title: "Quick Wire Frame",
-        description: "Design a mobile login screen",
+        title: "Mobile Login Screen",
+        description: "Design a modern mobile login interface with all required elements",
         type: "wireframe",
         difficulty: "medium",
-        points: 150,
-        timeLimit: 300,
+        points: 250,
+        timeLimit: 400,
         content: {
-          requirements: ["Login form", "Social login options", "Forgot password link", "Sign up button"],
-          constraints: { width: 375, height: 667 }
+          requirements: ["Email input field", "Password input field", "Login button", "Forgot password link", "Social login options", "Sign up link"],
+          constraints: { width: 375, height: 667 },
+          mockupUrl: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=375&h=667&fit=crop"
         }
       },
       {
-        title: "Algorithm Race",
-        description: "Optimize sorting performance",
+        title: "Quick Sort Challenge",
+        description: "Implement an efficient sorting algorithm",
         type: "algorithm",
         difficulty: "hard",
-        points: 300,
+        points: 350,
         timeLimit: 600,
         content: {
-          problem: "Sort an array of 10,000 integers in the most efficient way possible",
+          problem: "Implement QuickSort algorithm to sort an array of integers efficiently",
+          template: `function quickSort(arr) {\n  // Your implementation here\n  return arr;\n}`,
           testCases: [
-            { input: [3, 1, 4, 1, 5], output: [1, 1, 3, 4, 5] },
-            { input: [9, 8, 7, 6, 5], output: [5, 6, 7, 8, 9] }
+            { input: [3, 1, 4, 1, 5, 9, 2, 6, 5, 3], expected: [1, 1, 2, 3, 3, 4, 5, 5, 6, 9] },
+            { input: [9, 8, 7, 6, 5, 4, 3, 2, 1], expected: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
+            { input: [1], expected: [1] },
+            { input: [], expected: [] }
           ]
+        }
+      },
+      {
+        title: "REST API Design",
+        description: "Design a RESTful API for a task management system",
+        type: "api",
+        difficulty: "medium",
+        points: 280,
+        timeLimit: 450,
+        content: {
+          requirements: [
+            "User authentication endpoints",
+            "CRUD operations for tasks",
+            "Task categorization",
+            "User roles and permissions"
+          ],
+          template: {
+            "base_url": "https://api.taskmanager.com/v1",
+            "endpoints": {}
+          }
+        }
+      },
+      {
+        title: "Database Schema Design",
+        description: "Design a database schema for an e-commerce platform",
+        type: "database",
+        difficulty: "hard",
+        points: 320,
+        timeLimit: 500,
+        content: {
+          requirements: [
+            "Users and authentication",
+            "Products and categories",
+            "Orders and order items",
+            "Shopping cart functionality",
+            "Payment tracking"
+          ],
+          constraints: {
+            "normalize": true,
+            "foreign_keys": true,
+            "indexes": true
+          }
+        }
+      },
+      {
+        title: "Unit Test Suite",
+        description: "Write comprehensive unit tests for a calculator function",
+        type: "test",
+        difficulty: "easy",
+        points: 180,
+        timeLimit: 250,
+        content: {
+          functionToTest: `function calculator(a, b, operation) {\n  switch(operation) {\n    case 'add': return a + b;\n    case 'subtract': return a - b;\n    case 'multiply': return a * b;\n    case 'divide': return b !== 0 ? a / b : 'Error: Division by zero';\n    default: return 'Error: Invalid operation';\n  }\n}`,
+          requirements: [
+            "Test all operations (add, subtract, multiply, divide)",
+            "Test edge cases (division by zero, invalid operations)",
+            "Test with different number types (integers, decimals, negative)",
+            "Achieve 100% code coverage"
+          ]
+        }
+      },
+      {
+        title: "React Component Bug Hunt",
+        description: "Find and fix bugs in a React component",
+        type: "code",
+        difficulty: "medium",
+        points: 270,
+        timeLimit: 350,
+        content: {
+          code: `import React, { useState } from 'react';\n\nfunction UserList({ users }) {\n  const [filter, setFilter] = useState('');\n  \n  const filteredUsers = users.filter(user => \n    user.name.toLowercase().includes(filter.toLowerCase())\n  );\n  \n  return (\n    <div>\n      <input \n        type=\"text\" \n        value={filter} \n        onChange={(e) => setFilter(e.target.value)}\n        placeholder=\"Filter users...\"\n      />\n      <ul>\n        {filteredUsers.map(user => (\n          <li key={user.id}>{user.name} - {user.email}</li>\n        ))}\n      </ul>\n    </div>\n  );\n}`,
+          errors: ["Typo in toLowerCase method", "Missing default props handling", "Potential null reference"],
+          hints: ["Check method names carefully", "What if users prop is undefined?", "Consider empty states"]
+        }
+      },
+      {
+        title: "E-commerce Dashboard",
+        description: "Create a wireframe for an admin dashboard",
+        type: "wireframe",
+        difficulty: "hard",
+        points: 300,
+        timeLimit: 500,
+        content: {
+          requirements: [
+            "Navigation sidebar",
+            "Key metrics cards (sales, orders, users)",
+            "Charts and graphs area",
+            "Recent orders table",
+            "Quick actions panel",
+            "User profile dropdown"
+          ],
+          constraints: { width: 1200, height: 800 },
+          style: "modern_admin"
         }
       }
     ];
