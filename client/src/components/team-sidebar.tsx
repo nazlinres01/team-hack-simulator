@@ -49,6 +49,12 @@ export default function TeamSidebar({ team }: TeamSidebarProps) {
   return (
     <aside className="w-80 bg-dark-800 border-r border-dark-600 h-screen sticky top-0 overflow-y-auto">
       <div className="p-6">
+        {/* Platform Header */}
+        <div className="mb-6">
+          <h1 className="text-xl font-bold text-primary mb-1">🚀 DevCollab Arena</h1>
+          <p className="text-xs text-slate-400">Professional Development Platform</p>
+        </div>
+
         {/* Team Overview */}
         <Card className="team-card rounded-xl mb-6">
           <CardContent className="p-4">
