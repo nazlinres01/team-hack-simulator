@@ -58,9 +58,9 @@ export default function Dashboard() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              <span className="mr-2">💻</span>Team Hack Simulator
+              <span className="mr-2">🚀</span>DevCollab Arena
             </h1>
-            <span className="text-slate-400 text-sm">Digital Collaboration Lab</span>
+            <span className="text-slate-400 text-sm">Professional Development Platform</span>
           </div>
           
           <div className="flex items-center space-x-4">
