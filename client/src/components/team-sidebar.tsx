@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Settings, Gauge, Gamepad2, Trophy, History, UsersRound } from "lucide-react";
+import { Settings, Gauge, Gamepad2, Trophy, History, UsersRound, User } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import type { Team } from "@shared/schema";
 
@@ -42,6 +42,7 @@ export default function TeamSidebar({ team }: TeamSidebarProps) {
     { href: "/challenges", icon: Gamepad2, label: "Active Challenges" },
     { href: "/leaderboard", icon: Trophy, label: "Leaderboard" },
     { href: "/history", icon: History, label: "Challenge History" },
+    { href: "/profile", icon: User, label: "My Profile" },
     { href: "/team-settings", icon: UsersRound, label: "Team Settings" },
   ];
 

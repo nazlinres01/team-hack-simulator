@@ -10,6 +10,7 @@ import Challenges from "@/pages/challenges";
 import Leaderboard from "@/pages/leaderboard";
 import History from "@/pages/history";
 import TeamSettings from "@/pages/team-settings";
+import Profile from "@/pages/profile";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/history" component={History} />
       <Route path="/team-settings" component={TeamSettings} />
+      <Route path="/profile" component={Profile} />
       <Route component={NotFound} />
     </Switch>
   );
