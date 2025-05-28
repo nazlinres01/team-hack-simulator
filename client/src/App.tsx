@@ -6,6 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "next-themes";
 import Dashboard from "@/pages/dashboard";
 import Challenge from "@/pages/challenge";
+import Challenges from "@/pages/challenges";
+import Leaderboard from "@/pages/leaderboard";
+import History from "@/pages/history";
+import TeamSettings from "@/pages/team-settings";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -13,6 +17,10 @@ function Router() {
     <Switch>
       <Route path="/" component={Dashboard} />
       <Route path="/challenge/:id" component={Challenge} />
+      <Route path="/challenges" component={Challenges} />
+      <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/history" component={History} />
+      <Route path="/team-settings" component={TeamSettings} />
       <Route component={NotFound} />
     </Switch>
   );
