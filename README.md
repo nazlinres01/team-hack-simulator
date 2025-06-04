@@ -4,6 +4,10 @@
 
 DevCollab Arena is a comprehensive platform designed to enhance software development skills through interactive challenges, team collaboration, and AI-powered assessment. Built for developers who want to improve their coding, design, and problem-solving abilities in a gamified environment.
 
+
+![Resim14](https://github.com/user-attachments/assets/e96f722f-de0b-44c6-b4bd-060eafecb2ee)
+
+
 ## ✨ Features
 
 ### 🎯 Interactive Challenge System
